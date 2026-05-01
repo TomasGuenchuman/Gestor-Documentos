@@ -1,7 +1,8 @@
 // persona.service.ts
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { Entidad, TipoEntidad } from '../entities/entidad.entity';
+import { Entidad } from '../entities/entidad.entity';
+import { TipoEntidad } from 'src/common/tipoEntidad.enum';
 import { Vehiculo } from '../entities/vehiculo.entity';
 import { createVehiculoDTO } from '../dto/createVehiculoDTO.dto';
 
