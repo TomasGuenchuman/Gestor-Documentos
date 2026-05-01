@@ -1,57 +1,35 @@
 import {
-  Body,
   Controller,
   Get,
+  Post,
+  Body,
   Param,
   ParseIntPipe,
-  Post,
 } from '@nestjs/common';
-import {
-  ApiBadRequestResponse,
-  ApiCreatedResponse,
-  ApiNotFoundResponse,
-  ApiOperation,
-  ApiParam,
-  ApiTags,
-} from '@nestjs/swagger';
 
 import { CategoriaService } from '../services/categoria.service';
 import { CreateCategoriaDTO } from '../dto/createCategoriaDTO.dto';
+import { Categoria } from '../entities/categoria.entity';
 
-@ApiTags('Categorias')
 @Controller('categorias')
 export class CategoriaController {
   constructor(private readonly categoriaService: CategoriaService) {}
 
+  // POST /categorias
   @Post()
-  @ApiOperation({ summary: 'Crear una nueva categoría' })
-  @ApiCreatedResponse({
-    description: 'Categoría creada correctamente',
-  })
-  @ApiBadRequestResponse({
-    description: 'Datos inválidos o nombre duplicado',
-  })
-  create(@Body() createCategoriaDto: CreateCategoriaDTO) {
-    return this.categoriaService.create(createCategoriaDto);
+  async create(@Body() dto: CreateCategoriaDTO): Promise<Categoria> {
+    return await this.categoriaService.create(dto);
   }
 
+  // GET /categorias
   @Get()
-  @ApiOperation({ summary: 'Obtener todas las categorías' })
-  findAll() {
-    return this.categoriaService.findAll();
+  async findAll(): Promise<Categoria[]> {
+    return await this.categoriaService.findAll();
   }
 
+  // GET /categorias/:id
   @Get(':id')
-  @ApiOperation({ summary: 'Obtener una categoría por ID' })
-  @ApiParam({
-    name: 'id',
-    example: 1,
-    description: 'ID de la categoría',
-  })
-  @ApiNotFoundResponse({
-    description: 'Categoría no encontrada',
-  })
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.categoriaService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Categoria> {
+    return await this.categoriaService.findOne(id);
   }
 }
