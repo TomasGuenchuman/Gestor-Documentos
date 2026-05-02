@@ -10,6 +10,7 @@ import { Vehiculo } from './entities/vehiculo.entity';
 import { PersonaService } from './services/persona.service';
 import { EmpresaService } from './services/empresa.service';
 import { VehiculoService } from './services/vehiculo.service';
+import { EntidadService } from './services/entidad.service';
 
 // Controladores
 import { PersonaController } from './controllers/persona.controller';
@@ -22,7 +23,7 @@ import { VehiculoController } from './controllers/vehiculo.controller';
     TypeOrmModule.forFeature([Entidad, Persona, Empresa, Vehiculo]),
   ],
   controllers: [PersonaController, EmpresaController, VehiculoController],
-  providers: [PersonaService, EmpresaService, VehiculoService],
-  exports: [PersonaService, EmpresaService, VehiculoService],
+  providers: [PersonaService, EmpresaService, VehiculoService, EntidadService],
+  exports: [PersonaService, EmpresaService, VehiculoService, EntidadService],
 })
 export class EntidadModule {}
