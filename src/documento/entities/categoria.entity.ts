@@ -1,12 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
 import { TipoEntidad } from 'src/common/tipoEntidad.enum';
 
 @Entity()
+@Unique(['nombre', 'tipo'])
 export class Categoria {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ unique: true })
+  @Column()
   nombre!: string;
 
   @Column({
