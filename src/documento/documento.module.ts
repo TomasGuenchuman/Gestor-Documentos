@@ -9,13 +9,19 @@ import { CategoriaController } from './controllers/categoria.controller';
 import { CategoriaService } from './services/categoria.service';
 import { Entidad } from 'src/entidad/entities/entidad.entity';
 import { EntidadModule } from 'src/entidad/entidad.module';
+import { DocumentoVersionService } from './services/documentoVersion.service';
+import { DocumentoVersionController } from './controllers/documentoVersion.controller';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Categoria, Documento, DocumentoVersion, Entidad]),
     EntidadModule,
   ],
-  controllers: [DocumentoController, CategoriaController],
-  providers: [DocumentoService, CategoriaService],
+  controllers: [
+    DocumentoController,
+    CategoriaController,
+    DocumentoVersionController,
+  ],
+  providers: [DocumentoService, CategoriaService, DocumentoVersionService],
 })
 export class DocumentoModule {}

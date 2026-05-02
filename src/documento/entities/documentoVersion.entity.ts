@@ -27,7 +27,6 @@ export class DocumentoVersion {
 
   @Column({
     type: 'varchar',
-    length: 255,
   })
   url!: string;
 

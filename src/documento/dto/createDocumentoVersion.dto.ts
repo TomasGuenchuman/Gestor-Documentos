@@ -12,10 +12,6 @@ export class CreateDocumentoVersionDTO {
   @IsDateString()
   fecha_vencimiento?: Date | null;
 
-  @IsInt()
-  @IsPositive()
-  version!: number;
-
   @IsString()
   @IsNotEmpty()
   url!: string;
